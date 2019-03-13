@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="checkmobiColorPrimary">#4BAF12</color>
+    <color name="checkmobiColorPrimaryDark">#006400</color>
+    <color name="checkmobiColorAccent">#4BAF12</color>
+</resources>

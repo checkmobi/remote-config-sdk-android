@@ -1,0 +1,74 @@
+<resources>
+    <string name="app_name">checkmobi</string>
+
+    <!-- NumberInputActivity -->
+    <string name="settings">Settings</string>
+    <string name="number_input_info">Select your country, enter you phone number, and click continue:</string>
+    <string name="country_code_hint">Country Code</string>
+    <string name="phone_number_hint">Phone Number</string>
+    <string name="button_continue">Continue</string>
+    <string name="button_edit">Edit</string>
+    <string name="valid_number_verification_message">Are you sure you want to verify this number: %1$s?</string>
+    <string name="invalid_number_verification_message">The number seems to be invalid. Are you sure you want to verify this number: %1$s?</string>
+    <string name="country_code_empty_error">Please select a country code to proceed.</string>
+    <string name="number_empty_error">Please add a phone number to proceed.</string>
+    <string name="server_error">We were unable to reach the server. Please try again later.</string>
+    <string name="missed_call_tutorial">We will verify your number by giving you a call on this device. Please don\'t answer the incoming call.</string>
+
+    <!-- SettingsActivity -->
+    <string name="number_verification_flow">Number Verification Flow</string>
+    <string name="change_order">Change Order</string>
+    <string name="retriesIndexedValue">Number of Retries</string>
+    <string name="time_until_available">Time until Available</string>
+    <string name="country_hint">Country</string>
+
+    <!-- PinValidationActivity -->
+    <string name="button_validate_pin">Validate Pin</string>
+    <string name="resend_sms">SEND SMS</string>
+    <string name="call_me_with_code">CALL ME WITH CODE</string>
+    <string name="verify_with_missed_call">VERIFY WITH MISSED CALL</string>
+    <string name="no_retries_left">No Retries Left</string>
+    <string name="did_not_receive_code">Didn\'t receive the %s?</string>
+    <string name="incorrect_pin">Incorrect PIN number - please make sure you enter the correct verification PIN.</string>
+    <string name="receive_code_soon">You will receive a %s with a pin number in the next minute.</string>
+    <string name="method_will_not_work_without_permission">This verification method will not work without the phone call permission.</string>
+
+    <!-- VerificationBaseActivity -->
+    <string name="verifying_phone_number">Verifying your phone number</string>
+    <string name="please_wait">Please wait...</string>
+    <string name="cancel_verification_message">Are you sure you want to cancel the phone number verification process?</string>
+    <string name="button_ok">Ok</string>
+    <string name="button_yes">Yes</string>
+    <string name="button_no">No</string>
+
+    <string-array name="entries_retries">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <string-array name="entries_time_until_available">
+        <item>0</item>
+        <item>10</item>
+        <item>20</item>
+        <item>30</item>
+        <item>40</item>
+        <item>50</item>
+        <item>60</item>
+        <item>70</item>
+        <item>80</item>
+        <item>90</item>
+        <item>100</item>
+        <item>110</item>
+        <item>120</item>
+        <item>130</item>
+        <item>140</item>
+        <item>150</item>
+        <item>160</item>
+        <item>170</item>
+        <item>180</item>
+    </string-array>
+
+</resources>

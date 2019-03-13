@@ -1,0 +1,17 @@
+<resources>
+    <!-- Manifest -->
+    <string name="app_name">checkMobi Sample</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Start Activity -->
+    <string name="start_verification_button">Start Number Verification</string>
+    <string name="start_verification_button_with_theme">Start Number Verification With Theme</string>
+    <string name="user_canceled_verification_message">User Canceled Phone Number Verification</string>
+    <string name="api_key">Api Key</string>
+
+    <!-- SuccessActivity -->
+    <string name="congratulations">Congratulations!!!</string>
+    <string name="number_verified_label">Your phone number has been verified:</string>
+    <string name="reset_verified_number">Reset Verified Number</string>
+
+</resources>

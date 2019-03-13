@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp"
+        tools:context="com.checkmobi.sdk.ui.NumberInputActivity">
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/number_input_info"
+            android:id="@+id/tv_number_input_info"
+            android:textSize="15sp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+    <EditText
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            style="@style/CheckmobiUI.EditText"
+            android:inputType="textPersonName"
+            android:hint="@string/country_code_hint"
+            android:layout_marginTop="20dp"
+            android:id="@+id/et_country_code"
+            android:layout_below="@+id/tv_number_input_info"
+            android:focusable="false"/>
+
+    <EditText
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            style="@style/CheckmobiUI.EditText"
+            android:inputType="number"
+            android:hint="@string/phone_number_hint"
+            android:layout_below="@+id/et_country_code"
+            android:layout_marginTop="15dp"
+            android:id="@+id/et_number" />
+
+    <android.support.v7.widget.AppCompatButton
+            android:text="@string/button_continue"
+            style="@style/CheckmobiUI.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/et_number"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:id="@+id/bt_continue" />
+
+</RelativeLayout>

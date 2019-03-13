@@ -1,0 +1,25 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        package="com.checkmobi.sdk" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
+
+    <application>
+        <activity android:name="com.checkmobi.sdk.ui.NumberInputActivity"
+                android:screenOrientation="portrait"/>
+        <activity android:name="com.checkmobi.sdk.ui.PinValidationActivity"
+                android:screenOrientation="portrait"/>
+        <activity
+                android:name="com.checkmobi.sdk.ui.CountryCodeActivity"
+                android:label=""
+                android:screenOrientation="portrait"
+                android:parentActivityName="com.checkmobi.sdk.ui.NumberInputActivity">
+            <meta-data
+                    android:name="android.app.searchable"
+                    android:resource="@xml/searchable" />
+        </activity>
+    </application>
+
+</manifest>

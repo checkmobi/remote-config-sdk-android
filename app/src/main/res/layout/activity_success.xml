@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.checkmobi.checkmobisample.ui.SuccessActivity">
+
+    <TextView
+            android:text="@string/congratulations"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:id="@+id/textView"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="161dp" />
+
+    <TextView
+            android:text="@string/number_verified_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="235dp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/textView2" />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="190dp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/tv_verified_number" />
+
+    <Button
+            android:text="@string/reset_verified_number"
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="63dp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/bt_reset_verified_number" />
+
+</RelativeLayout>
