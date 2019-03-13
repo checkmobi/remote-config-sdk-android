@@ -35,7 +35,7 @@ In order to integrate the SDK into your project (using [Android Studio][3]), fol
 - Into [Android Studio][3] go to: `File -> New -> Import Module`
 - Choose the source of the module that you just cloned (`<path to cloned project>/checkmobi`) and press `Finish`
 
-##### Set the API Secret Key
+#### Set the API Secret Key
 
 In order to use the SDK you need in the first time to set the CheckMobi Secret Key from the web portal. You can do this somewhere before calling any SDK method by calling:
 
@@ -43,7 +43,7 @@ In order to use the SDK you need in the first time to set the CheckMobi Secret K
 CheckmobiSdk.getInstance().setApiKey("YOUR_SERET_KEY_HERE");
 ```
 
-##### Integrate the phone validation process
+#### Integrate the phone validation process
 
 The first thing you need to do is to check if the user has already verified his number. You can do this like so:
 
@@ -79,7 +79,7 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 }
 ```
 
-##### Customizations
+#### Customizations
 
 You can change the theme used in the activities by setting you theme in the `VerificationIntentBuilder` before you start it like so:
 
