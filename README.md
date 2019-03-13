@@ -93,8 +93,24 @@ startActivityForResult(
  
 Since this is an Android module, if you need to customize it even more, you are free to change the code.
 
+#### Behind the scene
+
+Behind the scene the SDK is using the [CheckMobi REST API][5]. 
+
+First is doing a call to [Get Remote Config Profile][6] which returns the validation flow for the specified destination as 
+configured in the CheckMobi Web Portal.
+
+Then based on the profile received the app it's using the [Request Validation API][7] and [Verify PIN API][8] to implement the desired validation processes. 
+   
+The select country picker is populated using the information received from [Get Countries API][9].
+
 
 [1]:https://checkmobi.com/
 [2]:https://github.com/checkmobi/remote-config-sdk-android/tree/master/app/src/main/java/com/checkmobi/checkmobisample/ui
 [3]:https://developer.android.com/studio
 [4]:https://github.com/checkmobi/remote-config-sdk-android/blob/master/app/src/main/java/com/checkmobi/checkmobisample/ui/StartActivity.java
+[5]:https://checkmobi.com/documentation.html#/overview
+[6]:https://checkmobi.com/documentation.html#/remote-config-profile-api
+[7]:https://checkmobi.com/documentation.html#/request_validation
+[8]:https://checkmobi.com/documentation.html#/verify_pin
+[9]:https://checkmobi.com/documentation.html#/countries-list
