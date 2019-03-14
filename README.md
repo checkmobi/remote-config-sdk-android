@@ -5,7 +5,7 @@
 ### Overview
 
 CheckMobi Remote Config SDK for Android allows the users to integrate CheckMobi validation methods 
-on Android in a very efficient and flexible manner without wasting their time for write the logic for any validation flow.
+on Android in a very efficient and flexible manner without wasting their time to write the logic for any validation flow.
 
 ### Features
 
