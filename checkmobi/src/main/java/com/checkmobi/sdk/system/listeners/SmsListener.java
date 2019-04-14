@@ -1,5 +1,9 @@
 package com.checkmobi.sdk.system.listeners;
 
+import com.google.android.gms.auth.api.phone.SmsRetriever;
+import com.google.android.gms.common.api.CommonStatusCodes;
+import com.google.android.gms.common.api.Status;
+
 import com.checkmobi.sdk.model.LastValidation;
 import com.checkmobi.sdk.network.response.CheckNumberResponse;
 import com.checkmobi.sdk.storage.StorageController;
@@ -14,34 +18,34 @@ import android.telephony.SmsMessage;
 
 public class SmsListener extends BroadcastReceiver {
     
+    public static final String START_FOR_TEMPLATE_WITH_HASH = "<#> ";
     public static final String CODE_IN_TEMPLATE = "%code%";
     public static final String SMS_TO_VERIFY = "SmsListener.SMS_TO_VERIFY";
     
     @Override
     public void onReceive(final Context context, Intent intent) {
-        if(intent.getAction().equals("android.provider.Telephony.SMS_RECEIVED")){
-            Bundle bundle = intent.getExtras();           //---get the SMS message passed in---
-            if (bundle != null){
-                //---retrieve the SMS message received---
-                try{
-                    Object[] pdus = (Object[]) bundle.get("pdus");
-                    SmsMessage[] msgs = new SmsMessage[pdus.length];
-                    for(int i=0; i<msgs.length; i++){
-                        msgs[i] = SmsMessage.createFromPdu((byte[])pdus[i]);
-                        final String msgBody = msgs[i].getMessageBody();
-                        System.out.println(msgBody);
-                        verifyIncomingSms(context, msgBody);
-                    }
-                }catch(Exception e){
-                            System.out.println(e.getMessage());
-                }
+        System.out.println("SMS Listener received action: " + intent.getAction());
+        if(SmsRetriever.SMS_RETRIEVED_ACTION.equals(intent.getAction())){
+            Bundle extras = intent.getExtras();
+            Status status = (Status) extras.get(SmsRetriever.EXTRA_STATUS);
+    
+            switch(status.getStatusCode()) {
+                case CommonStatusCodes.SUCCESS:
+                    // Get SMS message contents
+                    String message = (String) extras.get(SmsRetriever.EXTRA_SMS_MESSAGE);
+                    System.out.println(message);
+                    verifyIncomingSms(context, message);
+                    break;
+                case CommonStatusCodes.TIMEOUT:
+                     System.out.println("Waiting for SMS timed out (5 minutes)");
+                    break;
             }
         }
     }
     
     private void verifyIncomingSms(final Context context, final String msgBody) {
         final LastValidation lastValidation = StorageController.getInstance().getLatestLastValidation();
-        String smsTemplate = StorageController.getInstance().getSmsTemplateFromLastUsedValidationMethods();
+        String smsTemplate = START_FOR_TEMPLATE_WITH_HASH + StorageController.getInstance().getSmsTemplateFromLastUsedValidationMethods();
         if (lastValidation.getValidationType().equals(CheckNumberResponse.ValidationMethod.SMS) &&
                 isCorrectPattern(smsTemplate, msgBody)) {
             Intent intent = new Intent(SMS_TO_VERIFY);
@@ -57,12 +61,6 @@ public class SmsListener extends BroadcastReceiver {
             String start = splitTemplate[0];
             if (!msgBody.startsWith(start)) {
                 return false;
-            }
-            if (splitTemplate.length > 1) {
-                String stop = splitTemplate[1];
-                if (!msgBody.endsWith(stop)) {
-                    return false;
-                }
             }
         } else {
             return false;

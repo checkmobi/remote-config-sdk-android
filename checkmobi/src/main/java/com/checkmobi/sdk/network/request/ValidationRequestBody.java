@@ -1,5 +1,7 @@
 package com.checkmobi.sdk.network.request;
 
+import com.google.gson.annotations.SerializedName;
+
 public class ValidationRequestBody {
     
     private String type;
@@ -7,11 +9,15 @@ public class ValidationRequestBody {
     private String platform;
     private String language;
     
-    public ValidationRequestBody(String type, String number, String language) {
+    @SerializedName("android_app_hash")
+    private String androidAppHash;
+    
+    public ValidationRequestBody(String type, String number, String language, String androidAppHash) {
         this.type = type;
         this.number = number;
         this.language = language;
         this.platform = "android";
+        this.androidAppHash = androidAppHash;
     }
     
     public String getType() {
@@ -28,5 +34,9 @@ public class ValidationRequestBody {
     
     public String getLanguage() {
         return language;
+    }
+    
+    public String getAndroidAppHash() {
+        return androidAppHash;
     }
 }

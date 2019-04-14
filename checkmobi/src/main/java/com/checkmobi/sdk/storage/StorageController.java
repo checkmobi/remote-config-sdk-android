@@ -79,6 +79,16 @@ public class StorageController {
         return CheckNumberResponse.DEFAULT_SMS_TEMPLATE;
     }
     
+    public String getAndroidAppHashFromLastUsedValidationMethods() {
+        List<CheckNumberResponse.ValidationMethod> lastUsedValidationMethods = getLastUsedValidationMethods();
+        for (CheckNumberResponse.ValidationMethod validationMethod : lastUsedValidationMethods) {
+            if (validationMethod.getType().equals(CheckNumberResponse.ValidationMethod.SMS)) {
+                return validationMethod.getAndroidAppHash();
+            }
+        }
+        return null;
+    }
+    
     public void resetInMemoryStorage() {
         mInMemoryStorage.reset();
     }

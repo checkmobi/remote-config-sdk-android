@@ -7,7 +7,6 @@ import com.checkmobi.sdk.network.response.CheckNumberResponse;
 import com.checkmobi.sdk.network.response.ValidationResponse;
 import com.checkmobi.sdk.storage.StorageController;
 import com.checkmobi.sdk.system.listeners.CallListener;
-import com.checkmobi.sdk.system.listeners.SmsListener;
 import com.checkmobi.sdk.validation.ValidationController;
 
 import android.Manifest;
@@ -17,7 +16,6 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.provider.Telephony;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -48,7 +46,6 @@ public class NumberInputActivity extends VerificationBaseActivity {
     
     private CountDownTimer countDownTimer;
     
-    private SmsListener mSmsListener;
     private CallListener mCallListener;
     
     @Override
@@ -61,8 +58,6 @@ public class NumberInputActivity extends VerificationBaseActivity {
     }
     
     private void registerReceivers() {
-        mSmsListener= new SmsListener();
-        registerReceiver(mSmsListener, new IntentFilter(Telephony.Sms.Intents.SMS_RECEIVED_ACTION));
         mCallListener = new CallListener();
         registerReceiver(mCallListener, new IntentFilter("android.intent.action.PHONE_STATE"));
     }
@@ -119,6 +114,9 @@ public class NumberInputActivity extends VerificationBaseActivity {
                     if (validationType.equals(CheckNumberResponse.ValidationMethod.REVERSE_CLI)) {
                         setCallCountDownTimer();
                     } else {
+                        if (validationType.equals(CheckNumberResponse.ValidationMethod.SMS)) {
+                            registerForSMSRetrieverApi();
+                        }
                         goToValidationScreen();
                     }
                 } else {
@@ -155,11 +153,9 @@ public class NumberInputActivity extends VerificationBaseActivity {
         return ContextCompat.checkSelfPermission(this, permission);
     }
     
-    private void requestSmsAndCallPermission(CheckNumberResponse fullNumberUsed) {
-        String smsPermission = Manifest.permission.RECEIVE_SMS;
+    private void requestCallPermission(CheckNumberResponse fullNumberUsed) {
         String callPermission = Manifest.permission.READ_PHONE_STATE;
         String callLogPermission = Manifest.permission.READ_CALL_LOG;
-        int smsGrant = getGrantForPermission(smsPermission);
         int callGrant = getGrantForPermission(callPermission);
         int callLogGrant = getGrantForPermission(callLogPermission);
         List<String> permissionList = new ArrayList<>();
@@ -170,11 +166,6 @@ public class NumberInputActivity extends VerificationBaseActivity {
             if (callLogGrant != PackageManager.PERMISSION_GRANTED) {
                 permissionList.add(callLogPermission);
             }
-        }
-        if (smsGrant != PackageManager.PERMISSION_GRANTED &&
-                (smsFirst(fullNumberUsed) ||
-                        (callFirst(fullNumberUsed) && smsAvailable(fullNumberUsed)))) {
-            permissionList.add(smsPermission);
         }
         if (permissionList.size() > 0) {
             ActivityCompat.requestPermissions(this, permissionList.toArray(new String[permissionList.size()]), PERMISSION_REQUEST_CODE);
@@ -190,19 +181,6 @@ public class NumberInputActivity extends VerificationBaseActivity {
         } else {
             return false;
         }
-    }
-    
-    private boolean smsFirst(CheckNumberResponse fullNumberUsed) {
-        CheckNumberResponse.ValidationMethod firstAvailableValidationMethod = ValidationController.getFirstAvailableValidationMethod(NumberInputActivity.this, fullNumberUsed);
-        if (firstAvailableValidationMethod != null) {
-            return firstAvailableValidationMethod.getType().equals(CheckNumberResponse.ValidationMethod.SMS);
-        } else {
-            return false;
-        }
-    }
-    
-    private boolean smsAvailable(CheckNumberResponse fullNumberUsed) {
-        return ValidationController.isValidationMethodValid(NumberInputActivity.this, CheckNumberResponse.ValidationMethod.SMS, fullNumberUsed);
     }
     
     @Override
@@ -319,18 +297,17 @@ public class NumberInputActivity extends VerificationBaseActivity {
             builder.setPositiveButton(getResources().getString(R.string.button_continue), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    requestSmsAndCallPermission(checkNumberResponse);
+                    requestCallPermission(checkNumberResponse);
                 }
             });
             builder.show();
         } else {
-            requestSmsAndCallPermission(checkNumberResponse);
+            requestCallPermission(checkNumberResponse);
         }
     }
     
     @Override
     protected void onDestroy() {
-        unregisterReceiver(mSmsListener);
         unregisterReceiver(mCallListener);
         super.onDestroy();
     }

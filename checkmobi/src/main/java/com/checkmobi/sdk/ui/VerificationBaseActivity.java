@@ -1,5 +1,11 @@
 package com.checkmobi.sdk.ui;
 
+import com.google.android.gms.auth.api.phone.SmsRetriever;
+import com.google.android.gms.auth.api.phone.SmsRetrieverClient;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+
 import com.checkmobi.sdk.network.response.CheckNumberResponse;
 import com.checkmobi.sdk.storage.StorageController;
 import com.checkmobi.sdk.system.listeners.CallListener;
@@ -15,6 +21,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 
@@ -171,5 +178,25 @@ public abstract class VerificationBaseActivity extends CheckmobiBaseActivity {
         StorageController.getInstance().resetInMemoryStorage();
         setResult(RESULT_CANCELED);
         finish();
+    }
+    
+    protected void registerForSMSRetrieverApi() {
+        SmsRetrieverClient client = SmsRetriever.getClient(this /* context */);
+
+        Task<Void> task = client.startSmsRetriever();
+
+        task.addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                System.out.println("Successfully started retriever, expect broadcast intent");
+            }
+        });
+    
+        task.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                System.out.println("Failed to start retriever, inspect Exception for more details");
+            }
+        });
     }
 }

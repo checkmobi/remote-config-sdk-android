@@ -115,6 +115,9 @@ public class PinValidationActivity extends VerificationBaseActivity {
                     if (validationType.equals(CheckNumberResponse.ValidationMethod.REVERSE_CLI)) {
                         setCallCountDownTimer();
                     }
+                    if (validationType.equals(CheckNumberResponse.ValidationMethod.SMS)) {
+                        registerForSMSRetrieverApi();
+                    }
                     updateStatus();
                 } else {
                     showErrorDialog(R.string.server_error);
