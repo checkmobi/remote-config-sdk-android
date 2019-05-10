@@ -62,8 +62,9 @@ public class ValidationController {
                 language = null;
             }
         }
+        String androidAppHash = StorageController.getInstance().getAndroidAppHashFromLastUsedValidationMethods();
         Call<ValidationResponse> repos = RetrofitController.getInstance().getService()
-                .validate(CheckmobiSdk.getInstance().getApiKey(), new ValidationRequestBody(validationType, phoneNumber, language));
+                .validate(CheckmobiSdk.getInstance().getApiKey(), new ValidationRequestBody(validationType, phoneNumber, language, androidAppHash));
         repos.enqueue(new Callback<ValidationResponse>() {
             @Override
             public void onResponse(Call<ValidationResponse> call, Response<ValidationResponse> response) {

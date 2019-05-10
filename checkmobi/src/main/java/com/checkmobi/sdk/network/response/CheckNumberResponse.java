@@ -108,6 +108,9 @@ public class CheckNumberResponse {
         @SerializedName("sms_template")
         private String smsTemplate;
     
+        @SerializedName("android_app_hash")
+        private String androidAppHash;
+    
         public ValidationMethod(String type, int maxAttempts, int delay) {
             this.type = type;
             this.maxAttempts = maxAttempts;
@@ -132,6 +135,10 @@ public class CheckNumberResponse {
         
         public String getSmsTemplate() {
             return smsTemplate;
+        }
+    
+        public String getAndroidAppHash() {
+            return androidAppHash;
         }
     }
     
