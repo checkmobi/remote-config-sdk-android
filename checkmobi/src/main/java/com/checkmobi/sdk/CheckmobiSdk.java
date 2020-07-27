@@ -34,6 +34,10 @@ public class CheckmobiSdk {
         return StorageController.getInstance().getVerifiedNumber(context);
     }
     
+    public String getVerifiedNumberServerId(Context context) {
+        return StorageController.getInstance().getVerifiedNumberServerId(context);
+    }
+    
     public void resetVerifiedNumber(Context context) {
         StorageController.getInstance().resetVerifiedNumber(context);
     }

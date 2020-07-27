@@ -13,6 +13,7 @@ import android.widget.TextView;
 public class SuccessActivity extends AppCompatActivity {
     
     private TextView tvVerifiedNumber;
+    private TextView tvVerifiedNumberServerId;
     private Button btResetVerifiedNumber;
     
     @Override
@@ -26,6 +27,7 @@ public class SuccessActivity extends AppCompatActivity {
     
     private void setViews() {
         tvVerifiedNumber = (TextView) findViewById(R.id.tv_verified_number);
+        tvVerifiedNumberServerId = (TextView) findViewById(R.id.tv_verified_number_server_id);
         btResetVerifiedNumber = (Button) findViewById(R.id.bt_reset_verified_number);
     }
     
@@ -44,6 +46,10 @@ public class SuccessActivity extends AppCompatActivity {
         String verifiedNumber = CheckmobiSdk.getInstance().getVerifiedNumber(this);
         if (verifiedNumber != null) {
             tvVerifiedNumber.setText(verifiedNumber);
+        }
+        String verifiedNumberServiceId = CheckmobiSdk.getInstance().getVerifiedNumberServerId(this);
+        if (verifiedNumberServiceId != null) {
+            tvVerifiedNumberServerId.setText(verifiedNumberServiceId);
         }
     }
 }
