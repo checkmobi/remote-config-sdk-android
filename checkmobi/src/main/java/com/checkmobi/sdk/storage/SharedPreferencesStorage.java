@@ -19,6 +19,7 @@ public class SharedPreferencesStorage {
     private static final String LAST_USED_FULL_NUMBER = "checkmobi_last_used_full_number";
     private static final String LAST_USED_COUNTRY_CODE = "checkmobi_last_used_country_code";
     private static final String VERIFIED_NUMBER = "checkmobi_verified_number";
+    private static final String VERIFIED_NUMBER_SERVER_ID = "checkmobi_verified_number_server_id";
     
     private void saveString(Context context, String key, String value) {
         context.getSharedPreferences(SHARED_PREFS_FILE, Context.MODE_PRIVATE)
@@ -53,6 +54,14 @@ public class SharedPreferencesStorage {
         return readString(context, LAST_USED_NUMBER);
     }
     
+    protected void saveVerifiedNumberServerId(Context context, String verifiedNumberServerId) {
+        saveString(context, VERIFIED_NUMBER_SERVER_ID, verifiedNumberServerId);
+    }
+    
+    protected String getVerifiedNumberServerId(Context context) {
+        return readString(context, VERIFIED_NUMBER_SERVER_ID);
+    }
+    
     protected void saveVerifiedNumber(Context context, String verifiedNumber) {
         saveString(context, VERIFIED_NUMBER,verifiedNumber);
     }
@@ -63,6 +72,7 @@ public class SharedPreferencesStorage {
     
     protected void resetVerifiedNumber(Context context) {
         saveString(context, VERIFIED_NUMBER, null);
+        saveString(context, VERIFIED_NUMBER_SERVER_ID, null);
     }
     
 }

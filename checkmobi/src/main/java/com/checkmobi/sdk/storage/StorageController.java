@@ -93,6 +93,14 @@ public class StorageController {
         mInMemoryStorage.reset();
     }
     
+    public void saveVerifiedNumberServerId(Context context, String verifiedNumberServerId) {
+        mSharedPreferencesStorage.saveVerifiedNumberServerId(context, verifiedNumberServerId);
+    }
+    
+    public String getVerifiedNumberServerId(Context context) {
+        return mSharedPreferencesStorage.getVerifiedNumberServerId(context);
+    }
+    
     public void saveVerifiedNumber(Context context, String verifiedNumber) {
         mSharedPreferencesStorage.saveVerifiedNumber(context, verifiedNumber);
     }

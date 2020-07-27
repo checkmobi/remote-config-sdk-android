@@ -6,6 +6,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
+import com.checkmobi.sdk.model.LastValidation;
 import com.checkmobi.sdk.network.response.CheckNumberResponse;
 import com.checkmobi.sdk.storage.StorageController;
 import com.checkmobi.sdk.system.listeners.CallListener;
@@ -168,6 +169,11 @@ public abstract class VerificationBaseActivity extends CheckmobiBaseActivity {
         if (lastUsedFullNumber != null) {
             String verifiedNumber = lastUsedFullNumber.getE164Format();
             StorageController.getInstance().saveVerifiedNumber(this, verifiedNumber);
+        }
+        LastValidation lastValidation = StorageController.getInstance().getLatestLastValidation();
+        if (lastValidation != null && lastValidation.getValidationResponse() != null) {
+            String verifiedNumberServerId = lastValidation.getValidationResponse().getId();
+            StorageController.getInstance().saveVerifiedNumberServerId(this, verifiedNumberServerId);
         }
         StorageController.getInstance().resetInMemoryStorage();
         setResult(RESULT_OK);
