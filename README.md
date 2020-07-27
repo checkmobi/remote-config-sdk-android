@@ -81,7 +81,7 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 #### Optional Server to Server Validation
 
-For an extra layer of security, you can check from you backend that the phone number verification actually happened. For this, you will need the server id of the verification request. You can obtain it like this after a succesful phone number verification:
+For an extra layer of security, you can check from your backend that the phone number verification actually happened. For this, you will need the server id of the verification request. You can obtain it like this after a succesful phone number verification:
 
 ```java
 String verifiedNumberServerId = CheckmobiSdk.getInstance().getVerifiedNumberServerId(<context>);
