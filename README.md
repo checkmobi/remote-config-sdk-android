@@ -79,6 +79,16 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 }
 ```
 
+#### Optional Server to Server Validation
+
+For an extra layer of security, you can check from you backend that the phone number verification actually happened. For this, you will need the server id of the verification request. You can obtain it like this after a succesful phone number verification:
+
+```java
+String verifiedNumberServerId = CheckmobiSdk.getInstance().getVerifiedNumberServerId(<context>);
+```
+
+You should send this id from the app to your backend and the backend should call the checkmobi api with it. You can find more details on how to check the status of a verification request from your backend [here][10].
+
 #### Customizations
 
 You can change the theme used in the activities by setting you theme in the `VerificationIntentBuilder` before you start it like so:
@@ -114,3 +124,4 @@ The select country picker is populated using the information received from [Get 
 [7]:https://checkmobi.com/documentation.html#/request_validation
 [8]:https://checkmobi.com/documentation.html#/verify_pin
 [9]:https://checkmobi.com/documentation.html#/countries-list
+[10]:https://checkmobi.com/documentation.html#/validation_status
