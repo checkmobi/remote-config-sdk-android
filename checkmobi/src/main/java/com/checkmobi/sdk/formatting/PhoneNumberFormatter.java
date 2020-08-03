@@ -7,8 +7,8 @@ import com.checkmobi.sdk.network.RetrofitController;
 import com.checkmobi.sdk.network.request.CheckNumberRequestBody;
 import com.checkmobi.sdk.network.response.CheckNumberResponse;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.util.Locale;
 
