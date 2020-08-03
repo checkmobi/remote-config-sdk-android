@@ -11,7 +11,7 @@ import com.checkmobi.sdk.network.response.VerificationResponse;
 import com.checkmobi.sdk.storage.StorageController;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import java.util.List;
 import java.util.Locale;

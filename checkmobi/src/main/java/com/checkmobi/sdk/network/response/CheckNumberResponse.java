@@ -2,7 +2,7 @@ package com.checkmobi.sdk.network.response;
 
 import com.google.gson.annotations.SerializedName;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
