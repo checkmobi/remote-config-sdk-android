@@ -23,7 +23,8 @@ public class CheckNumberResponse {
     
     @SerializedName("country_iso_code")
     private String countryIsoCode;
-    
+
+    @SerializedName("carrier")
     private String carrier;
     
     @SerializedName("is_mobile")
@@ -31,7 +32,8 @@ public class CheckNumberResponse {
     
     @SerializedName("e164_format")
     private String e164Format;
-    
+
+    @SerializedName("formatting")
     private String formatting;
     
     public List<ValidationMethod> getValidationMethods() {
@@ -97,12 +99,14 @@ public class CheckNumberResponse {
         public static final String SMS = "sms";
         public static final String IVR = "ivr";
         public static final String REVERSE_CLI = "reverse_cli";
-        
+
+        @SerializedName("type")
         private String type;
         
         @SerializedName("max_attempts")
         private int maxAttempts;
-        
+
+        @SerializedName("delay")
         private int delay;
         
         @SerializedName("sms_template")

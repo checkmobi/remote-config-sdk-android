@@ -4,7 +4,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class CountryCode {
 
+    @SerializedName("prefix")
     private String prefix;
+    @SerializedName("name")
     private String name;
     
     @SerializedName("flag_128")
