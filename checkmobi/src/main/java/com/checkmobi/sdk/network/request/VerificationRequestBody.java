@@ -3,9 +3,13 @@ package com.checkmobi.sdk.network.request;
 import com.google.gson.annotations.SerializedName;
 
 public class VerificationRequestBody {
-    
+
+    @SerializedName("id")
     private String id;
+
+    @SerializedName("pin")
     private String pin;
+
     @SerializedName("use_server_hangup")
     private boolean useServerHangup;
     

@@ -3,10 +3,17 @@ package com.checkmobi.sdk.network.request;
 import com.google.gson.annotations.SerializedName;
 
 public class ValidationRequestBody {
-    
+
+    @SerializedName("type")
     private String type;
+
+    @SerializedName("number")
     private String number;
+
+    @SerializedName("platform")
     private String platform;
+
+    @SerializedName("language")
     private String language;
     
     @SerializedName("android_app_hash")
