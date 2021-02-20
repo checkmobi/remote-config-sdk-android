@@ -119,9 +119,9 @@ The select country picker is populated using the information received from [Get 
 [2]:https://github.com/checkmobi/remote-config-sdk-android/tree/master/app/src/main/java/com/checkmobi/checkmobisample/ui
 [3]:https://developer.android.com/studio
 [4]:https://github.com/checkmobi/remote-config-sdk-android/blob/master/app/src/main/java/com/checkmobi/checkmobisample/ui/StartActivity.java
-[5]:https://checkmobi.com/documentation.html#/overview
-[6]:https://checkmobi.com/documentation.html#/remote-config-profile-api
-[7]:https://checkmobi.com/documentation.html#/request_validation
-[8]:https://checkmobi.com/documentation.html#/verify_pin
-[9]:https://checkmobi.com/documentation.html#/countries-list
-[10]:https://checkmobi.com/documentation.html#/validation_status
+[5]:https://checkmobi.com/documentation/api-reference/
+[6]:https://checkmobi.com/documentation/api-reference/#get-remote-config-profile
+[7]:https://checkmobi.com/documentation/api-reference/#request-validation
+[8]:https://checkmobi.com/documentation/api-reference/#verify-pin
+[9]:https://checkmobi.com/documentation/api-reference/#get-available-countries
+[10]:https://checkmobi.com/documentation/api-reference/#get-validation-status
