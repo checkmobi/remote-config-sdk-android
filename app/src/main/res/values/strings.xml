@@ -8,6 +8,7 @@
     <string name="start_verification_button_with_theme">Start Number Verification With Theme</string>
     <string name="user_canceled_verification_message">User Canceled Phone Number Verification</string>
     <string name="api_key">Api Key</string>
+    <string name="no_api_key">Please set your Api Key</string>
 
     <!-- SuccessActivity -->
     <string name="congratulations">Congratulations!!!</string>
