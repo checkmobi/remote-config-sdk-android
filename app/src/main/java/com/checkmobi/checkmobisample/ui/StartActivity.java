@@ -16,7 +16,8 @@ import android.widget.Toast;
 
 public class StartActivity extends AppCompatActivity {
 
-    private static final String CHECKMOBI_SECRET_KEY = "Please add your Api Key here";
+    //TODO Please add your Api Key here
+    private static final String CHECKMOBI_SECRET_KEY = "";
     
     private static final String SHARED_PREFS_FILE = "android_checkmobi_sample_prefs";
     private static final String LAST_USED_API_KEY = "last_used_api_key";
