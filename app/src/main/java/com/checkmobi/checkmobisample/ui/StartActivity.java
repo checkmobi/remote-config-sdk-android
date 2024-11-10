@@ -16,7 +16,10 @@ import android.widget.Toast;
 
 public class StartActivity extends AppCompatActivity {
 
-    //TODO Please add your Api Key here
+    static {
+        System.loadLibrary("native-lib");
+    }
+
     private static final String CHECKMOBI_SECRET_KEY = "";
     
     private static final String SHARED_PREFS_FILE = "android_checkmobi_sample_prefs";
@@ -27,6 +30,8 @@ public class StartActivity extends AppCompatActivity {
     private Button btStartVerification;
     private Button btStartVerificationWithTheme;
     private EditText mApiKey;
+
+    public native String stringFromJNI();
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,12 +61,15 @@ public class StartActivity extends AppCompatActivity {
     }
     
     private void retrieveLastUsedApiKey() {
-        String lastApiKeyUsed = getSharedPreferences(SHARED_PREFS_FILE, MODE_PRIVATE)
-                .getString(LAST_USED_API_KEY, null);
+        String lastApiKeyUsed = getSharedPreferences(SHARED_PREFS_FILE, MODE_PRIVATE).getString(LAST_USED_API_KEY, null);
         if (!TextUtils.isEmpty(lastApiKeyUsed)) {
             mApiKey.setText(lastApiKeyUsed);
         } else {
-            mApiKey.setText(CHECKMOBI_SECRET_KEY);
+            String key_jni = stringFromJNI();
+            if(!TextUtils.isEmpty(key_jni))
+                mApiKey.setText(key_jni);
+            else
+                mApiKey.setText(CHECKMOBI_SECRET_KEY);
         }
     }
     

@@ -1,16 +1,14 @@
 apply plugin: 'com.android.library'
 
 android {
+    namespace 'com.checkmobi.sdk'
     compileSdkVersion 28
-
-
 
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 28
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
-
     }
 
     buildTypes {
@@ -19,8 +17,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    namespace 'com.checkmobi.sdk'
-
 }
 
 dependencies {

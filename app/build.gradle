@@ -1,17 +1,24 @@
 apply plugin: 'com.android.application'
 
 android {
+    namespace 'com.checkmobi.checkmobisample'
     signingConfigs {
     }
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.checkmobi.checkmobisample"
-        minSdkVersion 15
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         vectorDrawables.useSupportLibrary = true
+
+        externalNativeBuild {
+            cmake {
+                cppFlags ""
+            }
+        }
     }
     buildTypes {
         release {
@@ -19,7 +26,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    namespace 'com.checkmobi.checkmobisample'
+    externalNativeBuild {
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
+        }
+    }
 }
 
 dependencies {
